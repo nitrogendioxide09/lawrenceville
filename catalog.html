@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВелоВселенная - Каталог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo"><a href="index.html">ВелоВселенная</a> </div>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Наш каталог велосипедов</h1>
+
+    <div class="catalog">
+        <div class="bike-card">
+            <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="Горный велосипед">
+            <h3>Горный велосипед</h3>
+            <p>25 000 руб.</p>
+            <button class="buy-btn">Купить</button>
+        </div>
+
+        <div class="bike-card">
+            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Городской велосипед">
+            <h3>Городской велосипед</h3>
+            <p>12 000 руб.</p>
+            <button class="buy-btn">Купить</button>
+        </div>
+
+        <div class="bike-card">
+            <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Электровелосипед">
+            <h3>Электровелосипед</h3>
+            <p>35 000 руб.</p>
+            <button class="buy-btn">Купить</button>
+        </div>
+
+        <div class="bike-card">
+            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Шоссейный велосипед">
+            <h3>Шоссейный велосипед</h3>
+            <p>52 000 руб.</p>
+            <button class="buy-btn">Купить</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ВелоВселенная</h3>
+                <p>Мы предлагаем лучшие велосипеды для всех видов активного отдыха.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Категории</h3>
+                <ul>
+                    <li><a href="#">Горные велосипеды</a></li>
+                    <li><a href="#">Шоссейные велосипеды</a></li>
+                    <li><a href="#">Городские велосипеды</a></li>
+                    <li><a href="#">Электровелосипеды</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>Телефон: +7 (908) 133-74-44</li>
+                    <li>Email: info@bikeshop.ru</li>
+                    <li>Адрес: г. Воронеж, ул. Велосипедная, д. 10</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 ВелоВселенная. Все права защищены.
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('.buy-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            alert('Товар добавлен в корзину!');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВелоВселенная - Контакты</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=3522a1a7-d39f-49d7-8929-d1dc7e25c740&lang=ru_RU" type="text/javascript"></script
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo"><a href="index.html">ВелоВселенная</a> </div>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Наши контакты</h1>
+
+    <div class="contacts">
+        <div class="contact-info">
+            <h3>📞 Телефон</h3>
+            <p>+7 (908) 133-74-44</p>
+
+            <h3>📧 Email</h3>
+            <p>velovselennaya@info.ru</p>
+
+            <h3>📍 Адрес</h3>
+            <p>г. Воронеж, ул. Велосипедная, д. 1</p>
+
+            <h3>🕒 Время работы</h3>
+            <p>Пн-Пт: 9:00-20:00<br>Сб-Вс: 10:00-18:00</p>
+        </div>
+
+        <div class="map-container">
+            <!-- Контейнер для карты -->
+            <div id="map"></div>
+
+            <div class="map-controls">
+                <button id="find-me">Показать мое местоположение</button>
+                <button id="reset-map">Сбросить карту</button>
+            </div>
+
+            <div class="store-info">
+                <p>📍 Магазин отмечен красным маркером</p>
+                <p>🚗 Парковка для клиентов — синяя зона</p>
+                <p>🚇 Ближайшее метро — "Парк Культуры" (5 минут пешком)</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h3>Напишите нам</h3>
+            <form id="contactForm">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="email" placeholder="Ваш email" required>
+                <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ВелоВселенная</h3>
+                <p>Мы предлагаем лучшие велосипеды для всех видов активного отдыха.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Категории</h3>
+                <ul>
+                    <li><a href="#">Горные велосипеды</a></li>
+                    <li><a href="#">Шоссейные велосипеды</a></li>
+                    <li><a href="#">Городские велосипеды</a></li>
+                    <li><a href="#">Электровелосипеды</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>Телефон: +7 (908) 133-74-44</li>
+                    <li>Email: info@bikeshop.ru</li>
+                    <li>Адрес: г. Воронеж, ул. Велосипедная, д. 10</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 ВелоВселенная. Все права защищены.
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+        this.reset();
+    });
+    // Инициализация карты после загрузки API
+    ymaps.ready(init);
+
+    function init() {
+        // Координаты нашего магазина (Москва, ул. Велосипедная, 10)
+        var shopLocation = [55.7558, 37.6173];
+
+        // Создаем карту
+        var myMap = new ymaps.Map("map", {
+            center: shopLocation,
+            zoom: 15,
+            controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+        });
+
+        // Создаем метку для магазина
+        var myPlacemark = new ymaps.Placemark(shopLocation, {
+            balloonContentHeader: 'Магазин велосипедов "ВелоДрайв"',
+            balloonContentBody: '<strong>Адрес:</strong> г. Москва, ул. Велосипедная, д. 10<br>' +
+                    '<strong>Телефон:</strong> +7 (495) 123-45-67<br>' +
+                    '<strong>Время работы:</strong> Пн-Пт: 10:00-20:00, Сб-Вс: 10:00-18:00',
+            hintContent: 'Магазин велосипедов'
+        }, {
+            // Опции метки
+            iconLayout: 'default#image',
+            iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+            iconImageSize: [40, 40],
+            iconImageOffset: [-20, -40]
+        });
+
+        // Добавляем метку на карту
+        myMap.geoObjects.add(myPlacemark);
+
+        // Добавляем область парковки (полигон)
+        var parkingCoords = [
+            [55.7565, 37.6160],
+            [55.7565, 37.6175],
+            [55.7555, 37.6175],
+            [55.7555, 37.6160]
+        ];
+
+        var parkingPolygon = new ymaps.Polygon([parkingCoords], {}, {
+            fillColor: '#4285F4',
+            strokeColor: '#4285F4',
+            strokeOpacity: 0.8,
+            strokeWidth: 2,
+            fillOpacity: 0.3
+        });
+
+        // Добавляем полигон парковки на карту
+        myMap.geoObjects.add(parkingPolygon);
+
+        // Добавляем подпись к парковке
+        var parkingLabel = new ymaps.Placemark([55.7560, 37.6168], {
+            balloonContent: 'Бесплатная парковка для клиентов',
+            hintContent: 'Парковка'
+        }, {
+            preset: 'islands#blueStretchyIcon',
+            iconColor: '#4285F4'
+        });
+
+        myMap.geoObjects.add(parkingLabel);
+
+        // Обработчик кнопки "Показать мое местоположение"
+        document.getElementById('find-me').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = [position.coords.latitude, position.coords.longitude];
+
+                    // Добавляем метку пользователя
+                    var userPlacemark = new ymaps.Placemark(userLocation, {
+                        balloonContent: 'Вы здесь',
+                        hintContent: 'Ваше местоположение'
+                    }, {
+                        preset: 'islands#circleIcon',
+                        iconColor: '#ff0000'
+                    });
+
+                    myMap.geoObjects.add(userPlacemark);
+
+                    // Центрируем карту на пользователе
+                    myMap.setCenter(userLocation, 14);
+
+                    // Показываем маршрут от пользователя до магазина
+                    showRoute(userLocation, shopLocation, myMap);
+                }, function() {
+                    alert('Не удалось определить ваше местоположение');
+                });
+            } else {
+                alert('Ваш браузер не поддерживает геолокацию');
+            }
+        });
+
+        // Обработчик кнопки "Сбросить карту"
+        document.getElementById('reset-map').addEventListener('click', function() {
+            myMap.setCenter(shopLocation, 15);
+
+            // Удаляем все метки кроме метки магазина
+            myMap.geoObjects.each(function(geoObject) {
+                if (geoObject !== myPlacemark && geoObject !== parkingPolygon && geoObject !== parkingLabel) {
+                    myMap.geoObjects.remove(geoObject);
+                }
+            });
+        });
+
+        // Открываем балун при клике на метку магазина
+        myPlacemark.balloon.open();
+    }
+
+    // Функция для построения маршрута
+    function showRoute(startPoint, endPoint, map) {
+        // Создаем мультимаршрут
+        var multiRoute = new ymaps.multiRouter.MultiRoute({
+            referencePoints: [
+                startPoint,
+                endPoint
+            ],
+            params: {
+                routingMode: 'pedestrian'  // Пешеходный маршрут
+            }
+        }, {
+            boundsAutoApply: true,  // Автоматически подгонять карту под маршрут
+            routeActiveStrokeWidth: 6,
+            routeActiveStrokeColor: '#2c7a4a'
+        });
+
+        // Добавляем маршрут на карту
+        map.geoObjects.add(multiRoute);
+    }
+</script>
+</body>
+</html>
