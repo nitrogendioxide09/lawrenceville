@@ -15,40 +15,102 @@
             <li><a href="catalog.html">Каталог</a></li>
             <li><a href="about.html">О нас</a></li>
             <li><a href="contacts.html">Контакты</a></li>
+            <div class="cart-icon" id="cartIcon"> 🛒 <span class="cart-count" id="cartCount">0</span>
+            </div>
         </ul>
+        <!-- Корзина в верхней панели -->
+        <div class="cart-container">
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+                <span class="cart-total">0 ₽</span>
+            </div>
+        </div>
+    </nav>
+
     </nav>
 </header>
+<!-- Модальное окно корзины -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Ваша корзина</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
 
+        <div class="cart-items" id="cartItems">
+            <!-- Товары будут добавляться динамически -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Ваша корзина пуста</p>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Товары:</span>
+                <span id="subtotal">0 ₽</span>
+            </div>
+            <div class="summary-row">
+                <span>Доставка:</span>
+                <span id="shipping">Бесплатно</span>
+            </div>
+            <div class="summary-row total">
+                <span>Итого:</span>
+                <span id="total">0 ₽</span>
+            </div>
+
+            <div class="cart-buttons">
+                <button class="btn continue-shopping" id="continueShopping">Продолжить покупки</button>
+                <button class="btn checkout-btn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+</div>
 <main>
     <h1>Наш каталог велосипедов</h1>
 
     <div class="catalog">
-        <div class="bike-card">
+        <div class="bike-card" data-id="1" data-name="Горный велосипед" data-price="25000">
             <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="Горный велосипед">
             <h3>Горный велосипед</h3>
-            <p>25 000 руб.</p>
-            <button class="buy-btn">Купить</button>
+            <p class="price">25 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
         </div>
 
-        <div class="bike-card">
+        <div class="bike-card" data-id="2" data-name="Городской велосипед" data-price="12000">
             <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Городской велосипед">
             <h3>Городской велосипед</h3>
-            <p>12 000 руб.</p>
-            <button class="buy-btn">Купить</button>
+            <p class="price">12 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
         </div>
 
-        <div class="bike-card">
+        <div class="bike-card" data-id="3" data-name="Электровелосипед" data-price="35000">
             <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Электровелосипед">
             <h3>Электровелосипед</h3>
-            <p>35 000 руб.</p>
-            <button class="buy-btn">Купить</button>
+            <p class="price">35 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
         </div>
 
-        <div class="bike-card">
+        <div class="bike-card" data-id="4" data-name="Шоссейный велосипед" data-price="52000">
             <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Шоссейный велосипед">
             <h3>Шоссейный велосипед</h3>
-            <p>52 000 руб.</p>
-            <button class="buy-btn">Купить</button>
+            <p class="price">52 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
+        </div>
+
+        <div class="bike-card" data-id="5" data-name="Детский велосипед" data-price="8000">
+            <img src="detskii_velosiped_riverbike_q_12_riverbike_q_orange_12_5b2bb686a0ade_5251_big.jpg" alt="Детский велосипед">
+            <h3>Детский велосипед</h3>
+            <p class="price">8 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
+        </div>
+
+        <div class="bike-card" data-id="6" data-name="Складной велосипед" data-price="18000">
+            <img src="1_894_10.jpg" alt="Складной велосипед">
+            <h3>Складной велосипед</h3>
+            <p class="price">18 000 руб.</p>
+            <button class="buy-btn">Добавить в корзину</button>
         </div>
     </div>
 </main>
@@ -91,5 +153,6 @@
         });
     });
 </script>
+<script src="cart.js"></script>
 </body>
 </html>
